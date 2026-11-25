@@ -1,0 +1,824 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset=utf8>
+  <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <style>
+    :root {
+      color-scheme: light;
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font: 14px -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      color: #000
+    }
+
+    img {
+      max-width: 100%
+    }
+
+    [hidden]:not([hidden=until-found i]) {
+      display: none !important
+    }
+  </style>
+</head>
+
+<body>
+  <title>Alan y Agatatita</title>
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@600;800&family=Space+Mono:wght@700&display=swap">
+  <style>
+    /* un escenario por pantalla; el cielo pasa de mañana a noche; tarjetas claras siempre legibles */
+    :root {
+      color-scheme: light;
+      --top: #38c6ff;
+      --bot: #ffe66d;
+      --card: #fffaf0;
+      --ink: #2b1a5c;
+      --pink: #ff3d7f;
+      --yellow: #ffd23f;
+      --teal: #08c4b2;
+      --disp: 'Fredoka', 'Trebuchet MS', sans-serif;
+      --body: 'Nunito', system-ui, sans-serif;
+      --mono: 'Space Mono', monospace
+    }
+
+    [hidden] {
+      display: none !important
+    }
+
+    body {
+      background: linear-gradient(var(--top), var(--bot)) fixed var(--top);
+      min-height: 100vh;
+      color: var(--ink);
+      font: 600 17px/1.6 var(--body)
+    }
+
+    .wrap {
+      max-width: 520px;
+      margin: auto;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+      padding-block: 18px 40px
+    }
+
+    h1,
+    h2 {
+      font-family: var(--disp);
+      line-height: 1.15;
+      margin: 0;
+      text-wrap: balance;
+      outline: 0
+    }
+
+    h1 {
+      font-size: clamp(2rem, 9vw, 2.9rem)
+    }
+
+    h1 em {
+      color: var(--pink);
+      font-style: normal
+    }
+
+    h2 {
+      font-size: 1.8rem
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 26px;
+      padding: 20px 18px 24px;
+      text-align: center;
+      box-shadow: 0 10px 0 #2b1a5c26;
+      margin-bottom: 18px;
+      animation: in .5s ease
+    }
+
+    @keyframes in {
+      from {
+        transform: translateY(20px) scale(.97)
+      }
+    }
+
+    .trail {
+      display: flex;
+      justify-content: space-between;
+      gap: 4px;
+      margin-bottom: 14px;
+      font: .65rem var(--mono)
+    }
+
+    .trail span {
+      flex: 1;
+      text-align: center;
+      background: #fffaf099;
+      border-radius: 99px;
+      padding: 3px 0
+    }
+
+    .trail .on {
+      background: var(--yellow)
+    }
+
+    .art svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 18px;
+      margin-bottom: 14px
+    }
+
+    .eyebrow {
+      font: .72rem var(--mono);
+      color: #c2185b;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin: 0
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--pink);
+      color: #fff;
+      border: 0;
+      border-radius: 99px;
+      padding: 13px 26px;
+      font: 700 1.05rem var(--disp);
+      cursor: pointer;
+      box-shadow: 0 5px 0 #a81650;
+      margin-top: 10px
+    }
+
+    .btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #a81650
+    }
+
+    .skip {
+      background: none;
+      border: 0;
+      color: var(--ink);
+      text-decoration: underline;
+      font: 600 .8rem var(--body);
+      cursor: pointer;
+      display: block;
+      margin: 14px auto 0
+    }
+
+    button:focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 3px
+    }
+
+    .ticket {
+      background: var(--card);
+      border-radius: 20px;
+      overflow: visible;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 0 #2b1a5c26;
+      text-align: left
+    }
+
+    .main {
+      padding: 0 18px 16px
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin: 0 -18px;
+      padding: 10px 18px;
+      background: var(--pink);
+      color: #fff;
+      border-radius: 20px 20px 0 0;
+      font: .7rem var(--mono);
+      text-transform: uppercase
+    }
+
+    .ticket.b .top {
+      background: var(--teal);
+      color: var(--ink)
+    }
+
+    .route {
+      display: flex;
+      align-items: center;
+      margin: 12px 0
+    }
+
+    .route div {
+      text-align: center
+    }
+
+    .route b {
+      display: block;
+      font: 2.2rem/1 var(--mono)
+    }
+
+    .route small {
+      font-size: .8rem
+    }
+
+    .route i {
+      flex: 1;
+      margin: 0 10px;
+      border-bottom: 3px dotted #2b1a5c55;
+      text-align: center;
+      font-style: normal;
+      font-size: 1.5rem;
+      line-height: 1
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 12px;
+      margin: 0
+    }
+
+    dt {
+      font: .62rem var(--mono);
+      text-transform: uppercase;
+      opacity: .65
+    }
+
+    dd {
+      margin: 0;
+      font-weight: 800;
+      line-height: 1.3
+    }
+
+    .stub {
+      border-top: 3px dashed #2b1a5c66;
+      padding: 12px 18px 14px;
+      max-height: 120px;
+      overflow: hidden;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      transition: transform .8s ease-in, opacity .8s, max-height .8s ease-in, padding .8s ease-in, border-top-width .8s ease-in
+    }
+
+    .stub span {
+      font: 500 .95rem/1.3 var(--disp);
+      flex: 1
+    }
+
+    .bars {
+      width: 110px;
+      height: 38px;
+      background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 9px, transparent 9px 11px)
+    }
+
+    .torn .stub {
+      transform: translateY(60px) rotate(9deg);
+      opacity: 0;
+      max-height: 0;
+      padding-block: 0;
+      border-top-width: 0
+    }
+
+    .grid {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0
+    }
+
+    .g3 {
+      grid-template-columns: repeat(3, 1fr)
+    }
+
+    .g4 {
+      grid-template-columns: repeat(4, 1fr)
+    }
+
+    .tile {
+      min-width: 0;
+      min-height: 68px;
+      border: 0;
+      border-radius: 16px;
+      background: #ffe9a8;
+      color: var(--ink);
+      font: 700 1.7rem/1.1 var(--disp);
+      cursor: pointer;
+      padding: 6px;
+      box-shadow: 0 4px 0 #2b1a5c33
+    }
+
+    .tile small {
+      display: block;
+      font: 800 .7rem var(--body)
+    }
+
+    .tile.ok {
+      background: #8ff0c4
+    }
+
+    .tile.no {
+      background: #ffc2d4
+    }
+
+    .lamp {
+      opacity: .35;
+      min-height: 84px
+    }
+
+    .lamp.lit {
+      opacity: 1;
+      transform: scale(1.08)
+    }
+
+    .field {
+      position: relative;
+      height: 260px;
+      border-radius: 18px;
+      overflow: hidden;
+      margin: 12px 0;
+      touch-action: manipulation
+    }
+
+    .river {
+      height: 96px;
+      background: #38cde0
+    }
+
+    .boat {
+      position: absolute;
+      bottom: 22px;
+      font-size: 2.6rem;
+      transition: left .25s;
+      transform: scaleX(-1)
+    }
+
+    .goal {
+      position: absolute;
+      right: 6px;
+      top: 6px;
+      font-size: 2rem
+    }
+
+    .oars {
+      display: flex;
+      gap: 12px;
+      justify-content: center
+    }
+
+    .petals {
+      background: linear-gradient(#6a4fd0, #ff9cc6)
+    }
+
+    .petal {
+      position: absolute;
+      top: -60px;
+      width: 60px;
+      height: 60px;
+      border: 0;
+      background: none;
+      font-size: 2.2rem;
+      cursor: pointer;
+      animation: fall linear forwards
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(330px) rotate(220deg)
+      }
+    }
+
+    .stars {
+      background: #0a1240;
+      height: 290px
+    }
+
+    .stars svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none
+    }
+
+    .star {
+      position: absolute;
+      width: 46px;
+      height: 46px;
+      margin: -23px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--yellow);
+      color: var(--ink);
+      font: 700 1rem var(--disp);
+      cursor: pointer
+    }
+
+    .star.ok {
+      background: #8ff0c4
+    }
+
+    .status {
+      font: 700 1.05rem var(--disp);
+      min-height: 1.6em;
+      margin: 6px 0
+    }
+
+    .won {
+      background: #d9fbe9;
+      border-radius: 18px;
+      padding: 12px
+    }
+
+    .ring {
+      width: 130px;
+      animation: beat 1.4s ease-in-out infinite
+    }
+
+    @keyframes beat {
+      50% {
+        transform: scale(1.12)
+      }
+    }
+
+    .ask {
+      font: 700 clamp(1.8rem, 8vw, 2.5rem)/1.2 var(--disp);
+      color: #d1135f
+    }
+
+    .yes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center
+    }
+
+    .flight {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      overflow: hidden;
+      transition: background .5s
+    }
+
+    .flight canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%
+    }
+
+    .plane {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 130px;
+      height: 65px;
+      margin: -32px -65px
+    }
+
+    .plane svg {
+      width: 100%;
+      height: 100%
+    }
+
+    .flight p {
+      position: absolute;
+      bottom: 14%;
+      left: 16px;
+      right: 16px;
+      margin: 0;
+      text-align: center;
+      font: 700 1.7rem/1.25 var(--disp);
+      color: #fff;
+      text-shadow: 0 2px 8px #0009
+    }
+
+    .float {
+      position: fixed;
+      bottom: -50px;
+      z-index: 15;
+      pointer-events: none;
+      font: 700 1.3rem var(--disp);
+      color: var(--pink);
+      text-shadow: 0 0 4px #fff;
+      white-space: nowrap;
+      animation: up 3.5s ease-in forwards
+    }
+
+    .music-player {
+      position: fixed;
+      z-index: 30;
+      right: max(12px, env(safe-area-inset-right, 0px));
+      bottom: max(12px, env(safe-area-inset-bottom, 0px));
+      width: auto;
+      padding: 0;
+      border: 2px solid var(--ink);
+      border-radius: 18px;
+      background: var(--card);
+      box-shadow: 0 5px 0 #2b1a5c55;
+      font-size: .85rem
+    }
+
+    .music-player[open] {
+      width: min(280px, calc(100vw - 24px))
+    }
+
+    .music-player summary {
+      padding: 8px 12px;
+      border-radius: 16px;
+      color: #fff;
+      background: var(--pink);
+      font: 700 .9rem var(--disp);
+      cursor: pointer;
+      list-style: none
+    }
+
+    .music-player summary::-webkit-details-marker {
+      display: none
+    }
+
+    .music-controls {
+      display: grid;
+      gap: 6px;
+      padding: 8px 10px 10px
+    }
+
+    .music-player label {
+      font-weight: 800
+    }
+
+    .music-player select {
+      min-width: 0;
+      max-width: 100%;
+      border: 1px solid #2b1a5c66;
+      border-radius: 9px;
+      padding: 5px;
+      color: var(--ink);
+      background: #fff
+    }
+
+    .music-player audio {
+      width: 100%;
+      height: 38px
+    }
+
+    .music-volume {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .music-volume input {
+      flex: 1;
+      min-width: 0;
+      accent-color: var(--pink)
+    }
+
+    .music-status {
+      margin: 0;
+      color: #a81650;
+      font-size: .75rem
+    }
+
+    @keyframes up {
+      to {
+        transform: translateY(-115vh);
+        opacity: 0
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      .card,
+      .ring {
+        animation: none
+      }
+    }
+  </style>
+  <main class="wrap" id="app"></main>
+  <div class="flight" id="flight" hidden role="status"><canvas></canvas>
+    <div class="plane" aria-hidden="true"><svg viewBox="0 0 120 60">
+        <path d="M8 8h12l14 18h28L48 4h12l30 22h14q14 2 14 8t-14 8H90L60 58H48l14-16H26q-14-2-18-10l4-6h10z"
+          fill="#fffaf0" stroke="#2b1a5c" stroke-width="2" />
+        <g fill="#ff3d7f">
+          <circle cx="48" cy="34" r="3.5" />
+          <circle cx="62" cy="34" r="3.5" />
+          <circle cx="76" cy="34" r="3.5" />
+        </g>
+      </svg></div>
+    <p></p>
+  </div>
+  <details class="music-player">
+    <summary>🎵 Música</summary>
+    <div class="music-controls">
+      <label for="music-track">Canción</label>
+      <select id="music-track" aria-label="Elegir canción">
+        <option value="0">Canción</option>
+        <option value="1">Canción 2</option>
+      </select>
+      <audio id="background-music" controls preload="none" aria-label="Reproductor de música"></audio>
+      <label class="music-volume" for="music-volume">Volumen
+        <input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.35" aria-label="Volumen de la música">
+      </label>
+      <p class="music-status" id="music-status" aria-live="polite"></p>
+    </div>
+  </details>
+  <script>
+    const S = [{ "pais": "México", "ciudad": "Ciudad de México", "code": "MEX", "cap": "Capítulo 1 · El despegue", "tit": "Salgo por ti", "txt": "Mi amor, el viaje empieza conmigo en México, con la maleta en la mano y el corazón acelerado. Antes de salir tengo que empacar, porque en Chile me espera lo más bonito de mi vida.", "art": "<svg viewBox=\"0 0 400 220\" role=\"img\" aria-hidden=\"true\"><defs><linearGradient id=\"s0\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#38c6ff\"/><stop offset=\"1\" stop-color=\"#ffe66d\"/></linearGradient></defs><rect width=\"400\" height=\"220\" fill=\"url(#s0)\"/><circle cx=\"320\" cy=\"120\" r=\"30\" fill=\"#ffd27a\"/><path d=\"M0 190L60 120L85 138L110 112L175 190Z\" fill=\"#2fbf71\"/><g fill=\"#10142e\"><rect x=\"74\" y=\"80\" width=\"8\" height=\"135\"/><rect x=\"62\" y=\"190\" width=\"32\" height=\"25\"/><circle cx=\"78\" cy=\"66\" r=\"7\"/><path d=\"M78 74L56 58l20 6zM78 74l22-16-20 6z\"/></g><g fill=\"#10142e\" stroke=\"#10142e\" stroke-width=\"4\" stroke-linecap=\"round\"><circle cx=\"195\" cy=\"177\" r=\"7\"/><path d=\"M195 186l-6 22h12z\"/><path d=\"M191 207v8M199 207v8M200 193l12 8\" fill=\"none\"/><rect x=\"211\" y=\"198\" width=\"17\" height=\"16\" rx=\"3\" fill=\"#ff3d7f\"/></g><rect y=\"213\" width=\"400\" height=\"7\" fill=\"#10142e\"/></svg>", "win": "¡Maleta lista! Y esa cajita secreta va bien escondida." }, { "pais": "Chile", "ciudad": "Santiago de Chile", "code": "SCL", "cap": "Capítulo 2 · El encuentro", "tit": "Paso por ti a Chile", "txt": "Aterrizo en el mejor pais de Chile, busco entre la gente y ahí estás tú, mi cielo, con la cordillera de fondo. Te abrazo fuerte, te digo que te amo y desde aquí seguimos los dos.", "art": "<svg viewBox=\"0 0 400 220\" role=\"img\" aria-hidden=\"true\"><defs><linearGradient id=\"s1\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#1fa8ff\"/><stop offset=\"1\" stop-color=\"#b5f3ff\"/></linearGradient></defs><rect width=\"400\" height=\"220\" fill=\"url(#s1)\"/><path d=\"M0 215V150L70 70L125 135L200 50L280 140L335 85L400 150V215Z\" fill=\"#5b6ee1\"/><path d=\"M70 70l22 25-14-4-10 10-12-8-8 3zM200 50l28 31-17-5-12 12-14-11-13 4zM335 85l22 24-14-4-9 9-10-8-9 3z\" fill=\"#fff\"/><path d=\"M0 215V185Q100 160 200 195T400 180V215Z\" fill=\"#27a567\"/><g fill=\"#10142e\" stroke=\"#10142e\" stroke-width=\"4\" stroke-linecap=\"round\"><circle cx=\"188\" cy=\"177\" r=\"7\"/><path d=\"M188 186l-6 22h12z\"/><circle cx=\"214\" cy=\"179\" r=\"7\"/><path d=\"M214 188l-8 17h16z\"/><path d=\"M190 192l11 6l11-5M185 207v8M191 207v8M210 205v10M218 205v10\" fill=\"none\"/></g><rect y=\"213\" width=\"400\" height=\"7\" fill=\"#10142e\"/></svg>", "win": "¡Te encontré, mi estrellita! Ahora sí, no te suelto." }, { "pais": "Francia", "ciudad": "París", "code": "CDG", "cap": "Capítulo 3 · Las luces", "tit": "Una noche en París", "txt": "Cuando la torre se enciende, te abrazo por detrás para que no pases frío. Compartimos un postre en una mesita diminuta y mi corazoncito se siente tan calido y vuelvo a confirmar que tu eres la mujer con la que quiero pasar toda la eternidad.", "art": "<svg viewBox=\"0 0 400 220\" role=\"img\" aria-hidden=\"true\"><defs><linearGradient id=\"s2\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#ffa34d\"/><stop offset=\"1\" stop-color=\"#ffe27a\"/></linearGradient></defs><rect width=\"400\" height=\"220\" fill=\"url(#s2)\"/><path d=\"M300 30L292 95L270 160L250 215H272Q300 165 328 215H350L330 160L308 95Z\" fill=\"#10142e\"/><path d=\"M280 130h40M265 172h70\" stroke=\"#ffd27a\" stroke-width=\"4\"/><circle cx=\"300\" cy=\"28\" r=\"4\" fill=\"#ffd27a\"/><circle cx=\"75\" cy=\"55\" r=\"18\" fill=\"#fff3d6\"/><g fill=\"#10142e\" stroke=\"#10142e\" stroke-width=\"4\" stroke-linecap=\"round\"><circle cx=\"188\" cy=\"177\" r=\"7\"/><path d=\"M188 186l-6 22h12z\"/><circle cx=\"214\" cy=\"179\" r=\"7\"/><path d=\"M214 188l-8 17h16z\"/><path d=\"M190 192l11 6l11-5M185 207v8M191 207v8M210 205v10M218 205v10\" fill=\"none\"/></g><rect y=\"213\" width=\"400\" height=\"7\" fill=\"#10142e\"/></svg>", "win": "París se encendió entero, mi corazoncito." }, { "pais": "Italia", "ciudad": "Venecia", "code": "VCE", "cap": "Capítulo 4 · Los canales", "tit": "Despacito por el agua", "txt": "Subimos a una góndola sin preguntar a dónde va. Mi vida, contigo no me importa el rumbo. Apoyas la cabeza en mi hombro, el agua se mueve suave y yo guardo ese momento para siempre.", "art": "<svg viewBox=\"0 0 400 220\" role=\"img\" aria-hidden=\"true\"><defs><linearGradient id=\"s3\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#ff5d8f\"/><stop offset=\"1\" stop-color=\"#ffbe55\"/></linearGradient></defs><rect width=\"400\" height=\"220\" fill=\"url(#s3)\"/><g fill=\"#ff7a59\"><path d=\"M0 160V90h45v70zM50 160V70l25-18 25 18v90zM300 160V95h40v65zM345 160V75h55v85z\"/></g><g fill=\"#ffd27a\"><path d=\"M12 105h8v14h-8zM68 92h12v18H68zM312 110h9v14h-9zM362 95h10v16h-10z\"/></g><rect y=\"160\" width=\"400\" height=\"60\" fill=\"#1fb5c9\"/><path d=\"M20 175h60M290 185h80M60 197h50M310 202h40\" stroke=\"#8fb4d9\" stroke-width=\"3\"/><path d=\"M130 205Q200 232 275 205L292 188Q268 214 250 213H150Q135 213 122 198Z\" fill=\"#10142e\"/><g fill=\"#10142e\" stroke=\"#10142e\" stroke-width=\"4\" stroke-linecap=\"round\"><circle cx=\"188\" cy=\"177\" r=\"7\"/><path d=\"M188 186l-6 22h12z\"/><circle cx=\"214\" cy=\"179\" r=\"7\"/><path d=\"M214 188l-8 17h16z\"/><path d=\"M190 192l11 6l11-5M185 207v8M191 207v8M210 205v10M218 205v10\" fill=\"none\"/></g><rect y=\"213\" width=\"400\" height=\"7\" fill=\"#10142e\"/></svg>", "win": "Llegamos remando, mi vida. Contigo cualquier canal es corto." }, { "pais": "Egipto", "ciudad": "Giza", "code": "CAI", "cap": "Capítulo 5 · El desierto", "tit": "Arena y atardecer", "txt": "Frente a las pirámides hablamos de las cosas que duran miles de años. Yo apuesto por lo nuestro. Te acomodo el sombrero, nos sacamos una foto chueca y es la más bonita de todo el viaje.", "art": "<svg viewBox=\"0 0 400 220\" role=\"img\" aria-hidden=\"true\"><defs><linearGradient id=\"s4\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#c9379d\"/><stop offset=\"1\" stop-color=\"#ff8a3d\"/></linearGradient></defs><rect width=\"400\" height=\"220\" fill=\"url(#s4)\"/><circle cx=\"80\" cy=\"105\" r=\"34\" fill=\"#ffe29a\"/><path d=\"M120 190L215 80L310 190Z\" fill=\"#ffc43d\"/><path d=\"M215 80L310 190H235Z\" fill=\"#e08a1e\"/><path d=\"M255 190L325 115L395 190Z\" fill=\"#f5a623\"/><path d=\"M0 220V185Q110 160 230 190T400 178V220Z\" fill=\"#5c2f3d\"/><g fill=\"#10142e\" stroke=\"#10142e\" stroke-width=\"4\" stroke-linecap=\"round\"><circle cx=\"188\" cy=\"177\" r=\"7\"/><path d=\"M188 186l-6 22h12z\"/><circle cx=\"214\" cy=\"179\" r=\"7\"/><path d=\"M214 188l-8 17h16z\"/><path d=\"M190 192l11 6l11-5M185 207v8M191 207v8M210 205v10M218 205v10\" fill=\"none\"/></g><rect y=\"213\" width=\"400\" height=\"7\" fill=\"#10142e\"/></svg>", "win": "Tantas parejas, pero ninguna como nosotros, mi amor." }, { "pais": "Japón", "ciudad": "Kioto", "code": "KIX", "cap": "Capítulo 6 · Los pétalos", "tit": "Primavera en Kioto", "txt": "Caminamos bajo los cerezos y un pétalo se queda en tu pelo. No te aviso. Te ves tan linda, mi estrellita, que prefiero quedarme mirando un ratito más antes de que sigamos andando.", "art": "<svg viewBox=\"0 0 400 220\" role=\"img\" aria-hidden=\"true\"><defs><linearGradient id=\"s5\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#4b32b5\"/><stop offset=\"1\" stop-color=\"#ff6fae\"/></linearGradient></defs><rect width=\"400\" height=\"220\" fill=\"url(#s5)\"/><circle cx=\"88\" cy=\"55\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"171\" cy=\"12\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"254\" cy=\"59\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"337\" cy=\"16\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"30\" cy=\"63\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"113\" cy=\"20\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"196\" cy=\"67\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"279\" cy=\"24\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"362\" cy=\"71\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"55\" cy=\"28\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"138\" cy=\"75\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"221\" cy=\"32\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"304\" cy=\"79\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"387\" cy=\"36\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"80\" cy=\"83\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"163\" cy=\"40\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"246\" cy=\"87\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"329\" cy=\"44\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"22\" cy=\"91\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"105\" cy=\"48\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"188\" cy=\"95\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><path d=\"M0 215V175Q80 140 170 185T400 160V215Z\" fill=\"#6d5588\"/><g fill=\"#c2364a\"><path d=\"M255 70Q310 85 370 70l-3 14Q310 98 258 84zM268 100h89v9h-89zM278 82h12v133h-12zM335 82h12v133h-12z\"/></g><g fill=\"#ff9ebb\"><circle cx=\"40\" cy=\"80\" r=\"32\"/><circle cx=\"75\" cy=\"65\" r=\"28\"/><circle cx=\"85\" cy=\"100\" r=\"24\"/><circle cx=\"130\" cy=\"130\" r=\"4\"/><circle cx=\"160\" cy=\"100\" r=\"3\"/><circle cx=\"230\" cy=\"140\" r=\"4\"/></g><path d=\"M55 215Q70 150 55 95\" stroke=\"#10142e\" stroke-width=\"9\" fill=\"none\"/><g fill=\"#10142e\" stroke=\"#10142e\" stroke-width=\"4\" stroke-linecap=\"round\"><circle cx=\"188\" cy=\"177\" r=\"7\"/><path d=\"M188 186l-6 22h12z\"/><circle cx=\"214\" cy=\"179\" r=\"7\"/><path d=\"M214 188l-8 17h16z\"/><path d=\"M190 192l11 6l11-5M185 207v8M191 207v8M210 205v10M218 205v10\" fill=\"none\"/></g><rect y=\"213\" width=\"400\" height=\"7\" fill=\"#10142e\"/></svg>", "win": "Juntaste un ramo de pétalos. Cada uno lleva un te amo." }, { "pais": "Islandia", "ciudad": "Reikiavik", "code": "KEF", "cap": "Capítulo 7 · La aurora", "tit": "El cielo bailando", "txt": "Envueltos en la misma cobija esperamos la aurora. Cuando el cielo se pinta de verde, tú abres los ojos enormes. Yo ya tenía mi luz favorita sentada a mi lado.", "art": "<svg viewBox=\"0 0 400 220\" role=\"img\" aria-hidden=\"true\"><defs><linearGradient id=\"s6\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0\" stop-color=\"#050b2e\"/><stop offset=\"1\" stop-color=\"#14607a\"/></linearGradient></defs><rect width=\"400\" height=\"220\" fill=\"url(#s6)\"/><circle cx=\"88\" cy=\"55\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"171\" cy=\"12\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"254\" cy=\"59\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"337\" cy=\"16\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"30\" cy=\"63\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"113\" cy=\"20\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"196\" cy=\"67\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"279\" cy=\"24\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"362\" cy=\"71\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"55\" cy=\"28\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"138\" cy=\"75\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"221\" cy=\"32\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"304\" cy=\"79\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"387\" cy=\"36\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"80\" cy=\"83\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"163\" cy=\"40\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"246\" cy=\"87\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"329\" cy=\"44\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"22\" cy=\"91\" r=\"1.4\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"105\" cy=\"48\" r=\"1.8\" fill=\"#fff\" opacity=\".7\"/><circle cx=\"188\" cy=\"95\" r=\"1.0\" fill=\"#fff\" opacity=\".7\"/><g fill=\"none\" stroke-linecap=\"round\" opacity=\".55\"><path d=\"M-10 90Q80 20 170 75T410 40\" stroke=\"#5dffb0\" stroke-width=\"26\"/><path d=\"M-10 125Q110 70 220 105T410 85\" stroke=\"#7ad7ff\" stroke-width=\"12\"/><path d=\"M20 55Q130 5 240 45T390 15\" stroke=\"#c28bff\" stroke-width=\"9\"/></g><path d=\"M0 215V170L55 135L110 180L190 190L300 150L345 125L400 165V215Z\" fill=\"#dce8f5\"/><g fill=\"#10142e\" stroke=\"#10142e\" stroke-width=\"4\" stroke-linecap=\"round\"><circle cx=\"188\" cy=\"177\" r=\"7\"/><path d=\"M188 186l-6 22h12z\"/><circle cx=\"214\" cy=\"179\" r=\"7\"/><path d=\"M214 188l-8 17h16z\"/><path d=\"M190 192l11 6l11-5M185 207v8M191 207v8M210 205v10M218 205v10\" fill=\"none\"/></g><rect y=\"213\" width=\"400\" height=\"7\" fill=\"#10142e\"/></svg>", "win": "El cielo dibujó un corazón para ti, mi cielo. La razón por la que la noche puede verse así de hermos Seguramente no es a causa de esas estrellas o luces, es a causa de nosotros." }], SKY = [["#38c6ff", "#ffe66d"], ["#1fa8ff", "#b5f3ff"], ["#ffa34d", "#ffe27a"], ["#ff5d8f", "#ffbe55"], ["#c9379d", "#ff8a3d"], ["#4b32b5", "#ff6fae"], ["#050b2e", "#14607a"], ["#04061c", "#3a1c6e"]], app = document.getElementById('app');
+    let timers = [], busy = false;
+    const tracks = ['cancion.mp3', 'cancion2.mp3'];
+    const music = document.getElementById('background-music');
+    const trackPicker = document.getElementById('music-track');
+    const volumeControl = document.getElementById('music-volume');
+    const musicStatus = document.getElementById('music-status');
+    let currentTrack = 0;
+    music.volume = Number(volumeControl.value);
+    function selectTrack(index, autoplay) {
+      currentTrack = index;
+      musicStatus.textContent = '';
+      music.src = tracks[index];
+      music.load();
+      if (autoplay) music.play().catch(() => {
+        musicStatus.textContent = 'No se pudo reproducir la canción. Revisa que el archivo MP3 esté en la carpeta del proyecto.';
+      });
+    }
+    trackPicker.onchange = () => selectTrack(Number(trackPicker.value), !music.paused);
+    volumeControl.oninput = () => { music.volume = Number(volumeControl.value) };
+    music.onended = () => {
+      const next = (currentTrack + 1) % tracks.length;
+      trackPicker.value = String(next);
+      selectTrack(next, true);
+    };
+    music.onplaying = () => { musicStatus.textContent = '' };
+    music.onerror = () => {
+      musicStatus.textContent = 'No se pudo cargar la canción. Revisa que el archivo MP3 esté en la carpeta del proyecto.';
+    };
+    function startMusic() { selectTrack(Number(trackPicker.value), true) }
+    const later = (f, t) => timers.push(setTimeout(f, t));
+    const $ = s => app.querySelector(s);
+    const el = (h) => { const t = document.createElement('template'); t.innerHTML = h.trim(); return t.content.firstChild };
+    const shuffle = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+    function screen(i, html) {
+      timers.forEach(clearTimeout); timers = [];
+      document.documentElement.style.setProperty('--top', SKY[i][0]); document.documentElement.style.setProperty('--bot', SKY[i][1]);
+      app.innerHTML = html; scrollTo(0, 0); const h = $('h1,h2'); if (h) { h.tabIndex = -1; h.focus({ preventScroll: true }) }
+    }
+    const trail = i => '<div class="trail" aria-label="Avance del viaje">' + S.map((s, k) => `<span class="${k <= i ? 'on' : ''}">${s.code}</span>`).join('') + '<span class="' + (i > 6 ? 'on' : '') + '">♥</span></div>';
+    function ticket(name, seat, from, to, note, n, b) {
+      return `<div class="ticket ${b ? 'b' : ''}"><div class="main"><div class="top"><span>Aerolínea Te Amo</span><span>Pase de abordar</span></div>
+<div class="route"><div><b>${from[0]}</b><small>${from[1]}</small></div><i aria-hidden="true">✈</i><div><b>${to[0]}</b><small>${to[1]}</small></div></div>
+<dl><div><dt>Pasajero</dt><dd>${name}</dd></div><div><dt>Vuelo</dt><dd>TA ${String(n).padStart(4, '0')}</dd></div><div><dt>Asiento</dt><dd>${seat}</dd></div><div><dt>Regreso</dt><dd>${name == 'Alan' && n == 1 ? 'Con ella' : 'Siempre juntos'}</dd></div></dl></div>
+<div class="stub"><span>${note}</span><div class="bars" aria-hidden="true"></div></div></div>`
+    }
+    function start() {
+      screen(0, `<div class="card"><h1>Un viaje contigo, <em>Agatatita</em></h1><p>Mi amor, salgo desde México y paso por ti a Chile. De ahí, el mundo es nuestro. Juega cada parada para que podamos seguir.</p></div>
+${ticket('Alan', '1A', ['MEX', 'México'], ['SCL', 'Chile'], 'Voy por mi persona favorita', 1)}
+${ticket('Agatatita', '1B', ['SCL', 'Chile'], ['CDG', 'París'], 'El mejor asiento es junto a ti', 2, 1)}
+<div style="text-align:center"><button class="btn" id="go">Empezar el viaje ✈</button></div>`);
+      $('#go').onclick = () => { startMusic(); scene(0) }
+    }
+    function scene(i) {
+      const s = S[i]; screen(i, trail(i) + `<div class="card"><div class="art">${s.art}</div><p class="eyebrow">${s.cap}</p><h2>${s.tit}</h2><p class="eyebrow">${s.ciudad}, ${s.pais}</p><p>${s.txt}</p></div>
+<div class="card" id="game"></div>`);
+      const box = $('#game'); let done = false;
+      const win = () => {
+        if (done) return; done = true; timers.forEach(clearTimeout);
+        box.querySelectorAll('button').forEach(b => b.disabled = true); box.querySelector('.skip').remove();
+        const w = el(`<div class="won" role="status"><p>${s.win}</p><button class="btn">${i < 6 ? 'Ver boletos a ' + S[i + 1].pais : 'Ver el último boleto'} 🎫</button></div>`);
+        w.querySelector('button').onclick = () => boarding(i + 1); box.appendChild(w); burst(['♥', '✨'], 14); w.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
+      };
+      GAMES[i](box, win);
+      const k = el('<button class="skip">Saltar este juego</button>'); k.onclick = win; box.appendChild(k)
+    }
+    function head(box, t, p) { box.innerHTML = `<h2>${t}</h2><p>${p}</p><div class="play"></div><p class="status" aria-live="polite"></p>`; return [box.querySelector('.play'), box.querySelector('.status')] }
+    const GAMES = [
+      (box, win) => {
+        const [p, st] = head(box, 'Empaca mi maleta', 'Toca las 5 cosas que sí necesito para ir por ti.'); p.className = 'play grid g3'; let n = 0;
+        shuffle([['🛂', 'Pasaporte', 1], ['🎫', 'Boleto', 1], ['💐', 'Flores', 1], ['🧸', 'Peluche', 1], ['💍', 'Cajita secreta', 1], ['🌵', 'Un cactus', 0], ['🧊', 'Un hielo', 0], ['🐙', 'Un pulpo', 0], ['🧱', 'Un ladrillo', 0]]).forEach(([e, t, ok]) => {
+          const b = el(`<button class="tile">${e}<small>${t}</small></button>`); b.onclick = () => { b.disabled = true; if (ok) { b.classList.add('ok'); st.textContent = `En la maleta: ${++n} de 5`; if (n == 5) win() } else { b.classList.add('no'); st.textContent = 'Eso mejor lo dejo en casa 😅' } }; p.appendChild(b)
+        })
+      },
+      (box, win) => {
+        const [p, st] = head(box, 'Encuentra a tu viajero', 'Soy Alan y ya llegué a Chile. Búscame detrás de las montañas hasta que nos encontremos, mi cielo.'); p.className = 'play grid g3';
+        const at = Math.random() * 9 | 0; for (let k = 0; k < 9; k++) {
+          const b = el(`<button class="tile" aria-label="Montaña ${k + 1}">🏔️</button>`); b.onclick = () => {
+            b.disabled = true; if (k == at) { b.textContent = '👫'; b.classList.add('ok'); win() } else {
+              b.textContent = '💨'; b.classList.add('no');
+              const near = Math.abs(k % 3 - at % 3) < 2 && Math.abs((k / 3 | 0) - (at / 3 | 0)) < 2; st.textContent = near ? '¡Caliente! Estás muy cerca' : 'Frío, frío. Busca más lejos'
+            }
+          }; p.appendChild(b)
+        }
+      },
+      (box, win) => {
+        const [p, st] = head(box, 'Enciende la torre', 'Mira el orden en que brillan las luces y repítelo. Son 2 rondas.'); const icons = ['💛', '💖', '💙']; let seq = [], pos = 0, round = 0, lock = true;
+        const g = el('<div class="grid g3"></div>'), again = el('<button class="btn">Mostrar las luces</button>'); p.append(g, again);
+        const L = icons.map((c, k) => {
+          const b = el(`<button class="tile lamp" aria-label="Luz ${k + 1}">${c}</button>`); b.onclick = () => {
+            if (lock) return; flash(k);
+            if (k != seq[pos]) { lock = true; st.textContent = 'Casi. Mira las luces otra vez'; again.hidden = false; return }
+            if (++pos == seq.length) { lock = true; if (++round == 2) win(); else { seq = []; st.textContent = '¡Muy bien! Va la segunda'; again.hidden = false } }
+          }; g.appendChild(b); return b
+        });
+        const flash = k => { L[k].classList.add('lit'); later(() => L[k].classList.remove('lit'), 350) };
+        again.onclick = () => {
+          again.hidden = true; lock = true; pos = 0; if (!seq.length) seq = Array.from({ length: 3 + round }, () => Math.random() * 3 | 0); st.textContent = 'Observa…';
+          seq.forEach((k, j) => later(() => flash(k), 400 + j * 650)); later(() => { lock = false; st.textContent = 'Tu turno' }, 400 + seq.length * 650)
+        }
+      },
+      (box, win) => {
+        const [p, st] = head(box, 'Rema en la góndola', 'Alterna los remos, izquierdo y derecho, hasta llegar al puente.'); let n = 0, last = '';
+        p.innerHTML = '<div class="field river"><span class="goal">🌉</span><span class="boat" style="left:4%">🛶</span></div><div class="oars"><button class="btn" data-o="i">Remo izquierdo</button><button class="btn" data-o="d">Remo derecho</button></div>';
+        p.querySelectorAll('[data-o]').forEach(b => b.onclick = () => { if (b.dataset.o == last) { st.textContent = '¡Ahora el otro remo!'; return } last = b.dataset.o; n++; p.querySelector('.boat').style.left = 4 + n * 6 + '%'; st.textContent = `Avance: ${Math.round(n / 12 * 100)} %`; if (n == 12) win() })
+      },
+      (box, win) => {
+        const [p, st] = head(box, 'Memoria en el desierto', 'Encuentra las 4 parejas.'); p.className = 'play grid g4'; let open = [], n = 0;
+        shuffle(['🐪', '🐪', '🌞', '🌞', '💘', '💘', '🔺', '🔺']).forEach((c, k) => {
+          const b = el(`<button class="tile" aria-label="Carta ${k + 1}">❔</button>`); b.onclick = () => {
+            if (open.length == 2 || open.includes(b) || b.classList.contains('ok')) return; b.textContent = c; b.dataset.c = c; open.push(b);
+            if (open.length < 2) return; if (open[0].dataset.c == c) { open.forEach(x => x.classList.add('ok')); open = []; st.textContent = `Parejas: ${++n} de 4`; if (n == 4) win() } else later(() => { open.forEach(x => x.textContent = '❔'); open = [] }, 800)
+          }; p.appendChild(b)
+        })
+      },
+      (box, win) => {
+        const [p, st] = head(box, 'Atrapa los pétalos', 'Toca 10 flores de cerezo antes de que lleguen al suelo.'); const f = el('<div class="field petals"></div>'), go = el('<button class="btn">¡Que lluevan!</button>'); p.append(f, go); let n = 0, k = 0;
+        const drop = () => {
+          const b = el('<button class="petal" aria-label="Pétalo">🌸</button>'); b.style.left = (k++ * 37) % 80 + '%'; b.style.animationDuration = 3 + Math.random() + 's';
+          b.onpointerdown = b.onclick = () => { if (b.disabled || !b.isConnected) return; b.remove(); st.textContent = `Pétalos: ${++n} de 10`; if (n >= 10) { f.innerHTML = ''; win() } }; b.addEventListener('animationend', () => b.remove()); f.appendChild(b); later(drop, 550)
+        };
+        go.onclick = () => { go.hidden = true; drop() }
+      },
+      (box, win) => {
+        const [p, st] = head(box, 'Une las estrellas', 'Toca las estrellas en orden, del 1 al 8, y mira lo que aparece.');
+        const P = [[50, 30], [68, 13], [87, 30], [76, 60], [50, 87], [24, 60], [13, 30], [32, 13]]; let n = 0;
+        const f = el('<div class="field stars"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polyline fill="none" stroke="#ff7fb0" stroke-width="1.2"/></svg></div>'); p.appendChild(f); const line = f.querySelector('polyline'), got = [];
+        shuffle(P.map((_, k) => k)).forEach(k => {
+          const b = el(`<button class="star" style="left:${P[k][0]}%;top:${P[k][1]}%">${k + 1}</button>`); b.onclick = () => {
+            if (k != n) { st.textContent = `Busca la estrella ${n + 1}`; return } n++; b.classList.add('ok'); got.push(P[k].join()); st.textContent = '';
+            if (n == 8) got.push(P[0].join()); line.setAttribute('points', got.join(' ')); if (n == 8) win()
+          }; f.appendChild(b)
+        })
+      }
+    ];
+    function boarding(n) {
+      const last = n == 7, from = [S[n - 1].code, S[n - 1].pais], to = last ? ['♥', 'Para siempre'] : [S[n].code, S[n].pais];
+      const note = n == 1 ? 'Voy por ti, mi amor' : last ? 'Solo de ida' : 'Juntos en cada vuelo';
+      screen(n - 1, trail(n - 1) + `<div class="card"><h2>${n == 1 ? 'Mi boleto para ir por ti' : n == 2 ? 'Mi amor, este es el tuyo' : last ? 'Nuestro último boleto' : 'Próximo destino: ' + to[1]}</h2></div>
+<div id="passes">${ticket('Alan', '1A', from, to, note, n)}${n > 1 ? ticket('Agatatita', '1B', from, to, note, n, 1) : ''}</div>
+<div style="text-align:center"><button class="btn" id="tear">Cortar ${n > 1 ? 'boletos' : 'boleto'} y despegar</button></div>`);
+      $('#tear').onclick = e => {
+        e.target.disabled = true; $('#passes').querySelectorAll('.ticket').forEach(t => t.classList.add('torn'));
+        later(() => fly(n, n == 1 ? 'Voy por ti a Chile…' : last ? 'Volando hacia nuestro para siempre…' : `Volando juntos a ${to[1]}…`), 900)
+      }
+    }
+    function fly(n, msg) {
+      if (busy) return; busy = true;
+      const o = document.getElementById('flight'), c = o.querySelector('canvas'), pl = o.querySelector('.plane'), x = c.getContext('2d');
+      o.style.background = `linear-gradient(${SKY[n][0]},${SKY[n][1]})`; o.querySelector('p').textContent = msg; o.hidden = false;
+      const w = o.clientWidth, h = o.clientHeight, d = devicePixelRatio || 1; c.width = w * d; c.height = h * d; x.scale(d, d);
+      const A = [-90, h * .66], B = [w * .5, h * .18], C = [w + 280, h * .34];
+      const pt = t => [0, 1].map(k => (1 - t) ** 2 * A[k] + 2 * (1 - t) * t * B[k] + t * t * C[k]);
+      let t0 = null, moved = false;
+      const step = now => {
+        t0 ??= now; const t = Math.min((now - t0) / 3000, 1); x.clearRect(0, 0, w, h);
+        if (n >= 5) { x.fillStyle = '#fff'; for (let i = 0; i < 50; i++)x.fillRect((i * 97) % w, (i * 61) % (h * .7), 2, 2) }
+        x.fillStyle = '#ffffffcc';[[.7, .14], [.25, .52], [.1, .2]].forEach(([a, b]) => { const cx = a * w - t * 120, cy = b * h; x.beginPath(); x.arc(cx, cy, 22, 0, 7); x.arc(cx + 28, cy - 12, 30, 0, 7); x.arc(cx + 60, cy, 22, 0, 7); x.fill() });
+        // la estela sigue exactamente la misma curva que el avión
+        for (let i = 1; i <= 22; i++) {
+          const u = t - i * .022; if (u < 0) break; const [a, b] = pt(u), q = pt(Math.min(u + .01, 1)), ang = Math.atan2(q[1] - b, q[0] - a);
+          if (Math.hypot(a - pt(t)[0], b - pt(t)[1]) < 58) continue; x.globalAlpha = 1 - i / 24; x.beginPath(); x.arc(a, b, 4.5 - i * .12, 0, 7); x.fill()
+        }
+        x.globalAlpha = 1; const [a, b] = pt(t), q = pt(t + .01); pl.style.transform = `translate(${a}px,${b}px) rotate(${Math.atan2(q[1] - b, q[0] - a)}rad)`;
+        if (!moved && t > .55) { moved = true; n == 7 ? proposal() : scene(n) }
+        if (t < 1) requestAnimationFrame(step); else { o.hidden = true; busy = false }
+      };
+      requestAnimationFrame(step)
+    }
+    function burst(w, count) { for (let i = 0; i < count; i++) { const s = el(`<span class="float">${w[i % w.length]}</span>`); s.style.left = Math.random() * 75 + 5 + 'vw'; s.style.animationDelay = Math.random() * 1.5 + 's'; document.body.appendChild(s); setTimeout(() => s.remove(), 5200) } }
+    const RING = '<svg class="ring" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="74" r="32" fill="none" stroke="#f2a900" stroke-width="9"/><path d="M42 30L50 17H70L78 30L60 48Z" fill="#9fe6ff" stroke="#2b1a5c" stroke-width="2"/><path d="M42 30H78M50 17l10 31 10-31" fill="none" stroke="#2b1a5c" stroke-width="1.5"/></svg>';
+    function proposal() {
+      screen(7, trail(7) + `<div class="card" id="end"><h2>Último destino: nosotros</h2><p>Mi cielo, salí de México para buscarte, recorrimos el mundo y mi lugar favorito sigue siendo a tu lado. Me falta un viaje, el más largo y bonito: toda la vida contigo.</p><button class="btn" id="open">Abrir la cajita secreta</button></div>`);
+      $('#open').onclick = () => {
+        $('#end').innerHTML = `${RING}<p class="ask">Agatatita, mi vida,<br>¿te casarías conmigo?</p><div class="yes"><button class="btn">Sí, acepto</button><button class="btn">¡Mil veces sí!</button></div>`;
+        app.querySelectorAll('.yes button').forEach(b => b.onclick = () => {
+          $('#end').innerHTML = `${RING}<p class="ask">¡Dijiste que sí!</p><p>Me haces el hombre más feliz del mundo. Te amo, mi corazoncito, hoy y siempre.</p><p>Tuyo para siempre, Alan</p><button class="btn" id="re">Volver a viajar juntos</button>`;
+          $('#re').onclick = start; burst(['♥', 'Te amo', '💍', 'Mi amor', '🎉'], 50)
+        })
+      }
+    }
+    start();
+  </script>
+
+</body>
+
+</html>
