@@ -445,6 +445,16 @@
       animation: beat 1.4s ease-in-out infinite
     }
 
+    .proposal-photo {
+      display: block;
+      width: min(220px, 70vw);
+      max-height: 220px;
+      object-fit: contain;
+      margin: 4px auto 16px;
+      border-radius: 18px;
+      box-shadow: 0 6px 0 #2b1a5c26
+    }
+
     @keyframes beat {
       50% {
         transform: scale(1.12)
@@ -809,7 +819,7 @@ ${ticket('Agatatita', '1B', ['SCL', 'Chile'], ['CDG', 'París'], 'El mejor asien
     function proposal() {
       screen(7, trail(7) + `<div class="card" id="end"><h2>Último destino: nosotros</h2><p>Mi cielo, salí de México para buscarte, recorrimos el mundo y mi lugar favorito sigue siendo a tu lado. Me falta un viaje, el más largo y bonito: toda la vida contigo.</p><button class="btn" id="open">Abrir la cajita secreta</button></div>`);
       $('#open').onclick = () => {
-        $('#end').innerHTML = `${RING}<p class="ask">Agatatita, mi vida,<br>¿te casarías conmigo?</p><div class="yes"><button class="btn">Sí, acepto</button><button class="btn">¡Mil veces sí!</button></div>`;
+        $('#end').innerHTML = `<img class="proposal-photo" src="anillo.jpg" alt="Un hámster tierno mostrando un anillo de compromiso"><p class="ask">Agatatita, mi vida,<br>¿te casarías conmigo?</p><div class="yes"><button class="btn">Sí, acepto</button><button class="btn">¡Mil veces sí!</button></div>`;
         app.querySelectorAll('.yes button').forEach(b => b.onclick = () => {
           $('#end').innerHTML = `${RING}<p class="ask">¡Dijiste que sí!</p><p>Me haces el hombre más feliz del mundo. Te amo, mi corazoncito, hoy y siempre.</p><p>Tuyo para siempre, Alan</p><button class="btn" id="re">Volver a viajar juntos</button>`;
           $('#re').onclick = start; burst(['♥', 'Te amo', '💍', 'Mi amor', '🎉'], 50)
